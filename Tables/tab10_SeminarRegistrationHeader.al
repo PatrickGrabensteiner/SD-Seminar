@@ -4,7 +4,7 @@ table 50110 "CSD Seminar Reg. Header"
     //   Chapter 6 - Lab 1-3 & Lab 1-4
     //     - Created new table
     Caption = 'Seminar Registration Header';
-
+    
 
     Fields
     {
