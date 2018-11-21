@@ -1,4 +1,4 @@
-table 50141 "My Seminars"
+table 50141 "CSD My Seminars"
 // CSD1.00 - 2018-01-01 - D. E. Veloper
 //   Chapter 10 - Lab 1 - 3
 //     - Created new page

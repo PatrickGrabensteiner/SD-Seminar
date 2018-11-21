@@ -4,8 +4,10 @@ page 50141 "My Seminars"
 //     - Created new page
 {
     PageType = Listpart;
-    SourceTable = "My Seminars";
-    Caption='My Seminars';
+    SourceTable = "CSD My Seminars";
+    Caption = 'My Seminars';
+    UsageCategory = Lists;
+    ApplicationArea = All;
 
     layout
     {
@@ -13,16 +15,16 @@ page 50141 "My Seminars"
         {
             repeater(Group)
             {
-                field("Seminar No.";"Seminar No.")
+                field("Seminar No."; "Seminar No.")
                 {
                 }
-                field(Name;Seminar.Name)
+                field(Name; Seminar.Name)
                 {
                 }
-                field(Duration;Seminar."Seminar Duration")
+                field(Duration; Seminar."Seminar Duration")
                 {
                 }
-                field(Price;Seminar."Seminar Price")
+                field(Price; Seminar."Seminar Price")
                 {
                 }
             }
@@ -40,15 +42,24 @@ page 50141 "My Seminars"
                     OpenSeminarCard;
                 end;
             }
+            action(Create)
+            {
+                trigger OnAction();
+                begin
+                    Init();
+                    "User Id" := UserId();
+                    Insert();
+                end;
+            }
         }
     }
-    
+
     var
-        Seminar : Record "CSD Seminar";
+        Seminar: Record "CSD Seminar";
 
     trigger OnOpenPage();
     begin
-        SetRange("User Id",UserId);
+        SetRange("User Id", UserId);
     end;
 
     trigger OnAfterGetRecord();
@@ -56,14 +67,14 @@ page 50141 "My Seminars"
         if Seminar.get("Seminar No.") then;
     end;
 
-    trigger OnNewRecord(BelowxRec : Boolean);
+    trigger OnNewRecord(BelowxRec: Boolean);
     begin
-        Clear(Seminar);
+        //Clear(Seminar);
     end;
 
     local procedure OpenSeminarCard();
     begin
-        if Seminar."No."<>'' then
-          Page.Run(Page::"CSD Seminar Card",Seminar );
+        if Seminar."No." <> '' then
+            Page.Run(Page::"CSD Seminar Card", Seminar);
     end;
 }
